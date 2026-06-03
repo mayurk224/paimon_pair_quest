@@ -55,30 +55,31 @@ Paimon's Pair Quest/
 ### Overall Game Workflow
 ```mermaid
 flowchart TD
-    Start[Start Game<br>initGame()] --> Shuffle[Shuffle Cards]
-    Shuffle --> CreateTiles[Create & Display Tiles]
-    CreateTiles --> WaitClick{Wait for<br>Tile Click?}
-    
-    WaitClick -->|First Click| StartTimer[Start Timer<br>startTimer()]
-    WaitClick -->|Subsequent Click| FlipTile[Flip Tile]
-    
+    Start["Start Game (initGame)"] --> Shuffle["Shuffle Cards"]
+    Shuffle --> CreateTiles["Create and Display Tiles"]
+    CreateTiles --> WaitClick{"Tile Click?"}
+
+    WaitClick -->|First Click| StartTimer["Start Timer"]
+    WaitClick -->|Subsequent Click| FlipTile["Flip Tile"]
+
     StartTimer --> FlipTile
-    FlipTile --> CheckTwo{2 Cards Flipped?}
-    
+    FlipTile --> CheckTwo{"Two Cards Flipped?"}
+
     CheckTwo -->|No| WaitClick
-    CheckTwo -->|Yes| CheckMatch{Check for<br>Match?}
-    
-    CheckMatch -->|Match| MarkMatched[Mark as Matched<br>+ Increase Count]
-    CheckMatch -->|No Match| FlipBack[Flip Cards Back]
-    
-    MarkMatched --> CheckAll{All 16 Matched?}
-    FlipBack --> ResetFlipped[Reset Flipped Cards]
+    CheckTwo -->|Yes| CheckMatch{"Cards Match?"}
+
+    CheckMatch -->|Match| MarkMatched["Mark Matched"]
+    CheckMatch -->|No Match| FlipBack["Flip Cards Back"]
+
+    MarkMatched --> CheckAll{"All Cards Matched?"}
+    FlipBack --> ResetFlipped["Reset Flipped Cards"]
     ResetFlipped --> WaitClick
-    
+
     CheckAll -->|No| WaitClick
-    CheckAll -->|Yes| EndGame[End Game<br>Save Best Time]
-    EndGame --> RestartOption{Restart?}
-    
+    CheckAll -->|Yes| EndGame["Save Best Time"]
+
+    EndGame --> RestartOption{"Restart?"}
+
     RestartOption -->|Yes| Start
     RestartOption -->|No| End([End])
 ```
