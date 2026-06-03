@@ -8,6 +8,7 @@ const prevMsDisplay = document.querySelector('.prev-ms');
 
 const bgMusic = new Audio('assets/sounds/music.mp3');
 bgMusic.loop = true;
+bgMusic.volume = 0.6;
 const clickSound = new Audio('assets/sounds/click.mp3');
 const matchSound = new Audio('assets/sounds/match.mp3');
 const notMatchSound = new Audio('assets/sounds/not-match.mp3');
